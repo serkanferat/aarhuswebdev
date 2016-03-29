@@ -1,0 +1,78 @@
+﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+@using Umbraco.Web.Models
+@using Umbraco.Web.Controllers
+@{ string[] roles = System.Web.Security.Roles.GetRolesForUser(); }
+
+<nav class="navbar navbar-default">
+			@{ var root = CurrentPage.AncestorOrSelf(1); }
+			<div class="container">
+				<div class="row">
+					<ul class="nav navbar-nav">
+						<li class="@(CurrentPage.Name == root.Name ? "active" : null)">
+						<a href="/">@root.Name</a>
+						</li>
+
+						@foreach (var menuItem in root.Children.Where("Visible")) {
+							var isProtected = umbraco.library.IsProtected(menuItem.id, menuItem.path);
+							var loginAccess = umbraco.library.IsProtected(menuItem.id, menuItem.path)
+							&& umbraco.library.HasAccess(menuItem.id, menuItem.path);
+								if (!isProtected || loginAccess) {
+									<li class="@(menuItem.IsAncestorOrSelf(CurrentPage) ? "active" : null)">
+									<a href="@menuItem.Url">@menuItem.Name</a>
+									</li>
+								}
+						}	
+						<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href='CurrentPage.Site().FirstChild("projectsMain").Children("projectItem").Where("Visible && projectStatus.Contains(\"13\")"'>Our Projects<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+						@{
+							var CompletedProjects = CurrentPage.Site().FirstChild("projectsMain").Children("projectItem").Where("Visible && projectStatus.Contains(\"13\")");
+							
+						 }
+							
+						@foreach(var item in CompletedProjects){
+							<li><a href="@item.Url">@item.Name</a></li>
+						}
+						</ul> 
+						</li>	
+						@foreach (string role in roles) {
+							if(role == "Active" || role == "Prospect") {
+								
+								<li class="dropdown">
+								<a class="dropdown-toggle" data-toggle="dropdown" href='CurrentPage.Site().FirstChild("projectsMain").Children("projectItem").Where("Visible && projectStatus.Contains(\"11\")"'>Initiated Projects<span class="caret"></span></a>
+								<ul class="dropdown-menu">
+								@{
+									var initiatedProjects = CurrentPage.Site().FirstChild("projectsMain").Children("projectItem").Where("Visible && projectStatus.Contains(\"11\")");
+
+								 }
+
+								@foreach(var item in initiatedProjects){
+
+									<li><a href="@item.Url">@item.Name</a></li>
+								}
+								</ul>
+								</li>	
+							}
+							if(role == "Active") {
+								<li><a href="@umbraco.library.NiceUrl(1084)"> All Projects </a> </li>
+							}
+						}
+					</ul> 
+						
+					@if (!Members.GetCurrentLoginStatus().IsLoggedIn) {	
+						<a style="margin-top:10px;" class="btn btn-success btn-sm pull-right" href="@umbraco.library.NiceUrl(1138)"> Login </a> 
+					}
+					else
+					{	
+						var logoutModel = new PostRedirectModel();
+						logoutModel.RedirectUrl = "/";
+						using (Html.BeginUmbracoForm<UmbLoginStatusController>("HandleLogout")) {
+							<button style="margin-top:10px;" class="btn btn-danger btn-sm pull-right">Logout</button>
+						@Html.HiddenFor(m => logoutModel.RedirectUrl)
+						}
+					}
+					</div>
+				</div>
+						
+						
+				</nav>

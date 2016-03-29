@@ -1,0 +1,14 @@
+﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+	
+	
+@{
+	var newestProjects = Umbraco.TypedContent(1084).Children().Where("Visible && projectStatus.Contains(\"13\")").OrderBy("CreateDate desc").Take(5);
+}
+
+<ul class="list-group">
+	@foreach(var item in newestProjects){
+		<li class="list-group-item">
+			<a href="@item.Url">@item.Name</a>
+		</li>
+	}
+</ul>

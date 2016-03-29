@@ -1,0 +1,15 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+	Layout = "Master.cshtml";
+}
+
+<div id="main-container">
+		<div id="main" class="wrapper clearfix">
+		
+		<h2>@Umbraco.Field("articlesTitle")</h2>
+		<p>@Umbraco.Field("articlesBodyText")</p>
+			@Umbraco.RenderMacro("listArticles")
+			
+			
+		</div> <!-- #main -->
+</div> <!-- #main-container -->

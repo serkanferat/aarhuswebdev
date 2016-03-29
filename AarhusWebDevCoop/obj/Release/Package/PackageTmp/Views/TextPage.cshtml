@@ -1,0 +1,16 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+	Layout = "Master.cshtml";
+}
+@CurrentPage.GetGridHtml("fullWidthArtcle")
+<div id="main-container">
+    <div id="main" class="wrapper clearfix">
+        <section>
+            <h2>@Umbraco.Field("header")</h2>
+            <p>@Umbraco.Field("mainContent")</p>
+        </section>  
+    </div> <!-- #main -->
+</div> <!-- #main-container -->
+		
+		
+@CurrentPage.GetGridHtml("fullWidthArticle")

@@ -1,0 +1,81 @@
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #f5f5f5;
+}
+.container .text-muted {
+  margin: 20px 0;
+}
+
+img { width:100%; }
+
+.profile-details { 
+	background-color: #3D91AD;
+	
+	margin:10px 0;
+}
+
+.profile-picture {
+	position:relative;
+	margin-left: -29px;
+	float:left;
+}
+.profile-pic {
+	width:100%;
+	height: 150px;
+}
+
+.profile-description {
+	padding-top:5px;	
+	color:white;	
+}
+
+.project-details {
+	margin-top:20px;
+	
+}
+
+.project-story {
+	
+	background-color: #3D91AD;
+}
+.project-name {
+	height: 20px;
+	background-color: red;
+	padding: 20px 0 40px 0;
+	text-align:center;
+}
+.project-date {
+	color: white;
+	font-size: 12px;
+	padding: 5px 10px;
+}
+
+.project-details a {	color: #ffffff; text-transform:uppercase; }
+
+.project-preview {
+	margin-bottom:10px 0;
+	padding: 10px;
+	background-color: white;
+	color: #3D91AD;
+	border: 1px solid lightgrey;
+	text-align:justify;
+}
+.project-preview a {
+	color: #3D91DD;
+	text-transform:lowercase;
+	font-size:10px;
+}

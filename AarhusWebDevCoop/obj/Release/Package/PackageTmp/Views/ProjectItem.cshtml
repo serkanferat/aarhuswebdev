@@ -1,0 +1,13 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+	Layout = "Master.cshtml";
+}
+
+	<div class="well well-lg">
+		<h1>@Umbraco.Field("projectTitle", casing: RenderFieldCaseType.Upper)</h1>
+		<hr/>
+		@Umbraco.Field("projectDescription")
+	</div>
+	
+	
+	

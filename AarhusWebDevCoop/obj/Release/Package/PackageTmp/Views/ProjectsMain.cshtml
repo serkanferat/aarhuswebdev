@@ -1,0 +1,13 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+	Layout = "Master.cshtml";
+}
+
+<div class="container">
+	<div class="row">
+		<h2>All Projects</h2>
+		<hr/>
+		@Umbraco.RenderMacro("allProjects")
+
+	</div> <!-- #main -->
+</div> <!-- #main-container -->
